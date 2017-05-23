@@ -1,0 +1,27 @@
+{
+  "name": "NexflixGroupExercise",
+  "version": "0.1.0",
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "browserify": "^13.1.1",
+    "grunt": "^1.0.1",
+    "grunt-browserify": "^5.0.0",
+    "grunt-contrib-handlebars": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "handlebars": "^4.0.10",
+    "hbsfy": "^2.7.0",
+    "jquery": "^3.1.1",
+    "jshint": "^2.9.4",
+    "jshint-stylish": "^2.2.1",
+    "matchdep": "^1.0.1",
+    "sass": "^0.5.0"
+  },
+  "dependencies": {
+    "firebase": "^4.0.0",
+    "bootstrap": "^3.3.7"
+  }
+}

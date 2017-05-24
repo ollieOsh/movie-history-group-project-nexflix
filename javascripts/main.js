@@ -96,15 +96,12 @@ $("#unwatched").click(function() {
 //user clicks watched search filter and breadcrumbs appear
 $("#watched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
 });
 
 //user clicks favorites search filter and breadcrumbs appear
 $("#favorites").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
     $("#breadcrumb").append(`<li class="search-results">Favorites</li>`);
 });
 

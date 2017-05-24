@@ -9,19 +9,34 @@ let comboObj = {
 	movies: []
 };
 
+Handlebars.registerHelper('grouped_each', function(every, context, options) {
+    var out = "", subcontext = [], i;
+    if (context && context.length > 0) {
+        for (i = 0; i < context.length; i++) {
+            if (i > 0 && i % every === 0) {
+                out += options.fn(subcontext);
+                subcontext = [];
+            }
+            subcontext.push(context[i]);
+        }
+        out += options.fn(subcontext);
+    }
+    return out;
+});
+
 let loadMoviesToDom = () => {
 	mdb.getPopular().
 	then(function(songData){
 		console.log("popular", songData);
 		songData.forEach(function(element){
 			var newObj = {};
-			console.log("element", element);
+			// console.log("element", element);
 			newObj.movie = element.title;
 			newObj.year = element.year;
 			newObj.id = element.id;
 			mdb.getCredits(element.id)
 			.then(function(actors){
-				console.log("actors", actors);
+				// console.log("actors", actors);
 				newObj.cast = actors;
 				comboObj.movies.push(newObj);
 				// console.log("comboObj", comboObj);
@@ -81,15 +96,12 @@ $("#unwatched").click(function() {
 //user clicks watched search filter and breadcrumbs appear
 $("#watched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
 });
 
 //user clicks favorites search filter and breadcrumbs appear
 $("#favorites").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
     $("#breadcrumb").append(`<li class="search-results">Favorites</li>`);
 });
 

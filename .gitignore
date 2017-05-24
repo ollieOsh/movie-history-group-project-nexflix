@@ -4,3 +4,4 @@ dist/
 css/
 lib/node_modules
 javascripts/fb-getter.js
+javascripts/mdb-getter.js

@@ -27,8 +27,16 @@ function searchMDB(movieName) {
         $.ajax({
             url: `${movieDB.getMDBsettings().searchURL}${movieName}`
         }).done(function(movie) {
-            console.log(movie);
-            resolve(movie);
+            let searchMDBArray = [];
+            movie.results.forEach(function(element){
+                let searchMdbObj = {
+                    title: `${element.title}`,
+                    year: `${element.release_date}`,
+                    id: `${element.id}`
+                };
+                searchMDBArray.push(searchMdbObj);
+            });
+            resolve(searchMDBArray);
         });
     });
 }
@@ -48,7 +56,8 @@ function getCredits (movieId){
             url: `${movieDB.getMDBsettings().creditURL}${movieId}${movieDB.getMDBsettings().endCreditURL}`
         }).done(function(credits){
             let actorsArray = [];
-            for (var i = 0; i < 4; i++){
+            var i;
+            for (i = 0; i < 4; i++){
                 actorsArray.push(credits.cast[i].name);
             }
             resolve(actorsArray);

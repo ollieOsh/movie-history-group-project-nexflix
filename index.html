@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Nexflix</title>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="lib/node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/main.css">
 </head>
-<body>
+
 
 <!-- ********* Splash Page Navbar-->
     <div id="splashNav" class="">
+
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -21,23 +23,25 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
+
                     <li><a id="register-login">Register/Login</a></li>
+
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </nav>
     </div>
     <!-- ******************* -->
-
     <!-- ********* Navbar after user has logged in-->
     <div id="loggedInNav" class="hide">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -46,29 +50,30 @@
                         <span class="icon-bar"></span>
                     </button>
                 </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">Find New Movies<span class="sr-only">(current)</span></a></li>
+                        <li class="active find-new-movie"><a>Find New Movies<span class="sr-only">(current)</span></a></li>
                         <li><a href="#">Search Your Movies</a></li>
                     </ul>
                     <form class="navbar-form navbar-left">
                         <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                            <input type="text" class="form-control" placeholder="Search">
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
+
                     <li><a id="logout">Logout</a></li>
+
                     </ul>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
         </nav>
     </div>
     <!-- ******************* -->
-
     <h1>Nexflix</h1>
-
     <!-- Watched and Unwatched Buttons -->
     <div id="watchedButtons" class="btn-group hide" role="group" aria-label="...">
         <button type="button" class="btn btn-default">Show Unwatched Movies</button>
@@ -76,10 +81,19 @@
     </div>
     <!-- ******************* -->
 
-    <div id="outputArea"></div>
+    <!-- ********** Splash ********* -->
 
+    <div class="jumbotron hide">
+        <h1>Nexflix</h1>
+        <p>...</p>
+        <p><a class="btn btn-primary btn-lg" href="#" role="button">Nexflix</a></p>
+    </div>
+
+    <!-- ******************* -->
+    <div id="outputArea"></div>
     <script type="text/javascript" src="lib/node_modules/jquery/dist/jquery.min.js"></script>
     <script src="lib/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type='text/javascript' src='dist/app.js'></script>
 </body>
+
 </html>

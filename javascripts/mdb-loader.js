@@ -1,22 +1,23 @@
 "use strict";
 
-let movieDB= require("./mdb-config");
+let movieDB = require("./mdb-config");
 
-function getPopular(data){
-    return new Promise(function(resolve,reject){
+function getPopular(data) {
+    return new Promise(function(resolve, reject) {
         $.ajax({
             url: `${movieDB.getMDBsettings().popularURL}`
-        }).done(function(movieData){
+        }).done(function(movieData) {
             resolve(movieData);
         });
     });
 }
 
-function searchMDB(movieName){
-    return new Promise(function(resolve,reject){
+function searchMDB(movieName) {
+    return new Promise(function(resolve, reject) {
         $.ajax({
-            url: `${movieDB.getMDBsettings().searchMDB}${movieName}`
-        }).done(function(movie){
+            url: `${movieDB.getMDBsettings().searchURL}${movieName}`
+        }).done(function(movie) {
+            console.log(movie);
             resolve(movie);
         });
     });
@@ -31,8 +32,4 @@ function getPoster(poster){
     });
 }
 
-
-
-module.exports= {getPopular, searchMDB};
-
-
+module.exports = { getPopular, searchMDB };

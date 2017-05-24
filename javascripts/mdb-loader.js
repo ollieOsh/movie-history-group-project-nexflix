@@ -22,5 +22,14 @@ function searchMDB(movieName) {
         });
     });
 }
+function getPoster(poster){
+    return new Promise(function(resolve,reject){
+        $.ajax({
+            url: `${movieDB.getMDBsettings().posterURL}`
+        }).done(function(img){
+            resolve(img);
+        });
+    });
+}
 
 module.exports = { getPopular, searchMDB };

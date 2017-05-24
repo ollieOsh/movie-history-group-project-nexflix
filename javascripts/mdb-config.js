@@ -8,7 +8,7 @@ var mdbConfig={
     searchURL: mdbData.searchURL,
     popularURL: mdbData.popularURL,
     creditURL: mdbData.creditURL,
-    endcreditURL: mdbData.endcreditURL,
+    endCreditURL: mdbData.endCreditURL,
     posterURL: mdbData.posterURL
 };
 

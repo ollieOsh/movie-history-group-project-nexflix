@@ -4,7 +4,9 @@ let Handlebars = require('hbsfy/runtime'),
 	mdb = require('./mdb-loader.js'),
 	moviesTemplate = require('../templates/populatemovies.hbs');
 
-let comboObj = [];
+let comboObj = {
+	movies: []
+};
 
 let loadMoviesToDom = () => {
 	mdb.getPopular().
@@ -12,21 +14,21 @@ let loadMoviesToDom = () => {
 		console.log("popular", songData);
 		songData.forEach(function(element){
 			var newObj = {};
+			console.log("element", element);
 			newObj.movie = element.title;
 			newObj.year = element.year;
+			newObj.id = element.id;
 			mdb.getCredits(element.id)
 			.then(function(actors){
+				console.log("actors", actors);
 				newObj.cast = actors;
-				comboObj.push(newObj);
+				comboObj.movies.push(newObj);
+				// console.log("comboObj", comboObj);
+				$("#outputArea").html(moviesTemplate(comboObj));
 			});
 		});
-		// console.log("comboObj", comboObj);
-	}).
-	then(function(){
-		console.log("comboObj", comboObj);
-		console.log("movie", comboObj[0]);
-		$("#outputArea").html(moviesTemplate(comboObj));
 	});
+
 };
 let fivefifty = "550";
 let getCreditData = (movieId) => {

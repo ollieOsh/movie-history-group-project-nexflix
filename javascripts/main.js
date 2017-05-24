@@ -26,3 +26,12 @@ $("#logout").click(function() {
     $("#watchedButtons").addClass("hide");
 });
 
+// // Send movie data to db then reload DOM with updated song data
+// $(document).on("click", ".watchlist", function() {
+//   console.log("clicked add to watch list");
+//   let movieID = /* id that corrilates to this movie */
+//   mdb.addSong(songObj)
+//   .then(function() {
+//     loadSongsToDOM();
+//   });
+// });

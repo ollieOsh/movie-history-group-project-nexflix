@@ -1,12 +1,31 @@
-<div class="card">
-	<p>Hey Bob</p>
-	{{#each movies}}
-	<p>{{movie}}</p>
-	<p>{{year}}</p>
-	<p>
-	{{#cast}}
-	{{this}}
-	{{/cast}}
-	</p>
-	{{/each}}
+<div class="container">
+	{{#grouped_each 3 movies}}
+  <div class="row">
+    {{#each this }}
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            {{movie}}
+            <div class="btn-group pull-right navbar-right">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </div>
+          </h3>
+       	</div>
+       	<div class="panel-body">
+       	  <img class="poster" src="{{poster}}">
+       	   	<p>
+						{{#cast}}
+							{{this}}
+						{{/cast}}
+						</p>
+       	</div>
+       	<div class="panel-footer">
+          <span class="btn">{{year}}</span>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+	{{/grouped_each}}
 </div>

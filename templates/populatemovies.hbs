@@ -22,6 +22,19 @@
        	</div>
        	<div class="panel-footer">
           <span class="btn">{{year}}</span>
+          {{#if mdb}}
+          <div class="pull-right">
+            <a class="btn btn-default addToWatchlist">Add to Watchlist</a>
+          </div>
+          <div class="clearfix">
+          </div>
+          {{else}}
+          <div class="pull-right">
+            <a class="btn btn-default addToWatchlist">STARS</a>
+          </div>
+          <div class="clearfix">
+          </div>
+          {{/if}}
         </div>
       </div>
     </div>

@@ -12,7 +12,8 @@ function getPopular(){
                 let movieObj = {
                     title: `${element.title}`,
                     year: `${element.release_date}`,
-                    id: `${element.id}`
+                    id: `${element.id}`,
+                    mdb: "mdb"
                 };
                 moviesArray.push(movieObj);
             });
@@ -32,7 +33,8 @@ function searchMDB(movieName) {
                 let searchMdbObj = {
                     title: `${element.title}`,
                     year: `${element.release_date}`,
-                    id: `${element.id}`
+                    id: `${element.id}`,
+                    mdb: "mdb"
                 };
                 searchMDBArray.push(searchMdbObj);
             });

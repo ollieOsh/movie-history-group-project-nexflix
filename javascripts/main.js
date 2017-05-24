@@ -34,6 +34,7 @@ let loadMoviesToDom = () => {
 			newObj.movie = element.title;
 			newObj.year = element.year;
 			newObj.id = element.id;
+			newObj.mdb = element.mdb;
 			mdb.getCredits(element.id)
 			.then(function(actors){
 				// console.log("actors", actors);
@@ -122,6 +123,7 @@ $(document).on('click', '#untracked', () => {
 			newObj.movie = element.title;
 			newObj.year = element.year;
 			newObj.id = element.id;
+			newObj.mdb = element.mdb;
 			mdb.getCredits(element.id)
 			.then(function(actors){
 				// console.log("actors", actors);
@@ -130,6 +132,7 @@ $(document).on('click', '#untracked', () => {
 				// console.log("comboObj", comboObj);
 				$("#outputArea").html(moviesTemplate(comboObj));
 			});
+			console.log("comboObj", comboObj);
 		});
 	});
 });

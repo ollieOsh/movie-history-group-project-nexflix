@@ -15,19 +15,23 @@ let loadMoviesToDom = () => {
 		console.log("popular", songData);
 		songData.forEach(function(element){
 			var newObj = {};
-			console.log("element", element);
+			// console.log("element", element);
 			newObj.movie = element.title;
 			newObj.year = element.year;
 			newObj.id = element.id;
 			mdb.getCredits(element.id)
 			.then(function(actors){
-				console.log("actors", actors);
+				// console.log("actors", actors);
 				newObj.cast = actors;
 				comboObj.movies.push(newObj);
-				// console.log("comboObj", comboObj);
-				$("#outputArea").html(moviesTemplate(comboObj));
+				// let newDiv = document.createElement("div");
+				// newDiv.innerHTML = moviesTemplate(comboObj);
+				// $("#outputArea").append(newDiv);
 			});
 		});
+	})
+	.then(function(){
+		console.log("comboObj", comboObj);
 	});
 
 };

@@ -1,41 +1,31 @@
-{{!-- <div class="card"> --}}
-{{#each movies}}
-<div class="col-md-4">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">
-        {{movie}}
-        <div class="btn-group pull-right navbar-right">
-          <button class="btn btn-link dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-trash"></i></button>
+<div class="container">
+	{{#grouped_each 3 movies}}
+  <div class="row">
+    {{#each this }}
+    <div class="col-md-4">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            {{movie}}
+            <div class="btn-group pull-right navbar-right">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </div>
+          </h3>
+       	</div>
+       	<div class="panel-body">
+       	  <img class="poster" src="{{poster}}">
+       	   	<p>
+						{{#cast}}
+							{{this}}
+						{{/cast}}
+						</p>
+       	</div>
+       	<div class="panel-footer">
+          <span class="btn">{{year}}</span>
         </div>
-      </h3>
-    </div>
-    <div class="panel-body">
-      <img src="http://placehold.it/350x150">
-      <p>{{year}}</p>
-      <p>
-			{{#cast}}
-				{{this}}
-			{{/cast}}
-			</p>
-    </div>
-    <div class="panel-footer">
-      <div class="pull-right">
-        <a class="btn btn-default">View</a>
-        <a class="btn btn-success"><i class="fa fa-shopping-cart"></i> Buy</a>
-      </div>
-      <div class="clearfix">
       </div>
     </div>
+    {{/each}}
   </div>
+	{{/grouped_each}}
 </div>
-	{{!-- <p>Hey Bob</p>
-		<p>{{movie}}</p>
-		<p>{{year}}</p>
-		<p>
-		{{#cast}}
-			{{this}}
-		{{/cast}}
-		</p> --}}
-	{{/each}}
-{{!-- </div> --}}

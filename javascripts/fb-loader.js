@@ -23,10 +23,8 @@ let getWatchedMovies = () => {
     //stars appears under card
 };
 
-let getUnwatchedMovies = () => {
-    //clicks show unwatched
-    //unwatched view
-    //watched appears under card
+let removeFromFB = () => {
+    //delete movie from users list of movies
 };
 
 let watchClick = () => {
@@ -41,10 +39,6 @@ let starsClick = () => {
     //PATCH:
 };
 
-let removeFromFB = () => {
-    //delete movie from users list of movies
-};
-
-module.exports= {addMovies, getWatchedMovies, getUnwatchedMovies, watchClick, starsClick, removeFromFB};
+module.exports= {addMovies, getWatchedMovies, removeFromFB, watchClick, starsClick};
 
 

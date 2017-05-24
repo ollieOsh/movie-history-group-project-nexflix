@@ -17,16 +17,27 @@ function getPopular(){
                 moviesArray.push(movieObj);
             });
             resolve(moviesArray);
+
         });
     });
 }
 
-function searchMDB(movieName){
+function searchMDB(movieName) {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: `${movieDB.getMDBsettings().searchURL}${movieName}`
+        }).done(function(movie) {
+            console.log(movie);
+            resolve(movie);
+        });
+    });
+}
+function getPoster(poster){
     return new Promise(function(resolve,reject){
         $.ajax({
-            url: `${movieDB.getMDBsettings().searchMDB}${movieName}`
-        }).done(function(movie){
-            resolve(movie);
+            url: `${movieDB.getMDBsettings().posterURL}`
+        }).done(function(img){
+            resolve(img);
         });
     });
 }
@@ -46,5 +57,4 @@ function getCredits (movieId){
 }
 
 module.exports= {getPopular, searchMDB, getCredits};
-
 

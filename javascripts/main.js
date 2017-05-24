@@ -53,7 +53,7 @@ let getCreditData = (movieId) => {
 		console.log("creditData", creditData);
 	});
 };
-loadMoviesToDom();
+// loadMoviesToDom();
 // getCreditData(fivefifty);
 // mdb.creditsURL(fivefifty);
 
@@ -109,8 +109,27 @@ $("#favorites").click(function() {
 $(document).on('click', '#untracked', () => {
 	let inputValue = $('.form-control').val();
 	let movieName = inputValue.replace(/ /gi, '+');
+	$("#outputArea").html(null);
+	comboObj = {
+		movies: []
+	};
 	mdb.searchMDB(movieName)
 	.then((value) => {
-    	console.log('Input value is', movieName);
+    	console.log('Input value is', value);
+    	value.forEach(function(element){
+			var newObj = {};
+			// console.log("element", element);
+			newObj.movie = element.title;
+			newObj.year = element.year;
+			newObj.id = element.id;
+			mdb.getCredits(element.id)
+			.then(function(actors){
+				// console.log("actors", actors);
+				newObj.cast = actors;
+				comboObj.movies.push(newObj);
+				// console.log("comboObj", comboObj);
+				$("#outputArea").html(moviesTemplate(comboObj));
+			});
+		});
 	});
 });

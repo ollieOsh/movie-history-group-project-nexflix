@@ -2,6 +2,7 @@
 
 let user = require("./user");
 
+
 //user login
 $("#register-login").click(function() {
   console.log("clicked on register-login");
@@ -24,3 +25,4 @@ $("#logout").click(function() {
     $("#loggedInNav").addClass("hide");
     $("#watchedButtons").addClass("hide");
 });
+

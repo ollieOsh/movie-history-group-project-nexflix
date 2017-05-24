@@ -1,0 +1,12 @@
+<div class="card">
+	<p>Hey Bob</p>
+	{{#each movies}}
+	<p>{{movie}}</p>
+	<p>{{year}}</p>
+	<p>
+	{{#cast}}
+	{{this}}
+	{{/cast}}
+	</p>
+	{{/each}}
+</div>

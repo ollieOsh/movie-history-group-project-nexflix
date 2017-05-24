@@ -1,6 +1,47 @@
 "use strict";
 
+let Handlebars = require('hbsfy/runtime'),
+	mdb = require('./mdb-loader.js'),
+	moviesTemplate = require('../templates/populatemovies.hbs');
 let user = require("./user");
+
+let comboObj = {
+	movies: []
+};
+
+let loadMoviesToDom = () => {
+	mdb.getPopular().
+	then(function(songData){
+		console.log("popular", songData);
+		songData.forEach(function(element){
+			var newObj = {};
+			console.log("element", element);
+			newObj.movie = element.title;
+			newObj.year = element.year;
+			newObj.id = element.id;
+			mdb.getCredits(element.id)
+			.then(function(actors){
+				console.log("actors", actors);
+				newObj.cast = actors;
+				comboObj.movies.push(newObj);
+				// console.log("comboObj", comboObj);
+				$("#outputArea").html(moviesTemplate(comboObj));
+			});
+		});
+	});
+
+};
+let fivefifty = "550";
+let getCreditData = (movieId) => {
+	mdb.getCredits(movieId)
+	.then(function(creditData){
+		console.log("creditData", creditData);
+	});
+};
+loadMoviesToDom();
+// getCreditData(fivefifty);
+// mdb.creditsURL(fivefifty);
+
 
 
 //user login
@@ -26,12 +67,38 @@ $("#logout").click(function() {
     $("#watchedButtons").addClass("hide");
 });
 
-// // Send movie data to db then reload DOM with updated song data
-// $(document).on("click", ".watchlist", function() {
-//   console.log("clicked add to watch list");
-//   let movieID = /* id that corrilates to this movie */
-//   mdb.addSong(songObj)
-//   .then(function() {
-//     loadSongsToDOM();
-//   });
-// });
+//user clicks unwatched search filter and breadcrumbs appear
+$("#untracked").click(function() {
+    $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
+});
+
+//user clicks unwatched search filter and breadcrumbs appear
+$("#unwatched").click(function() {
+    $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
+    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
+});
+
+//user clicks watched search filter and breadcrumbs appear
+$("#watched").click(function() {
+    $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
+    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
+    $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
+});
+
+//user clicks favorites search filter and breadcrumbs appear
+$("#favorites").click(function() {
+    $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
+    $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
+    $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
+    $("#breadcrumb").append(`<li class="search-results">Favorites</li>`);
+});
+
+// Get input value and pass it to .. searchMBD
+$(document).on('click', '.find-new-movie', () => {
+	let inputValue = $('.form-control').val();
+	let movieName = inputValue.replace(/ /gi, '+');
+	mdb.searchMDB(movieName)
+	.then((value) => {
+    	console.log('Input value is', movieName);
+	});
+});

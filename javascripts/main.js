@@ -12,4 +12,5 @@ $(document).on('click', '.find-new-movie', () => {
 
 	});
 	$('.form-control').val('');
+
 });

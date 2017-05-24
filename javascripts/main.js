@@ -37,3 +37,5 @@ $(document).on('click', '.find-new-movie', () => {
     	console.log('Input value is', movieName);
 	});
 });
+
+

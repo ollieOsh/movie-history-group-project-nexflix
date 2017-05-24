@@ -25,11 +25,13 @@ function searchMDB(movieName) {
 function getPoster(poster){
     return new Promise(function(resolve,reject){
         $.ajax({
-            url: `${movieDB.getMDBsettings().posterURL}`
+            url: `${movieDB.getMDBsettings().posterURL}${poster}`
         }).done(function(img){
             resolve(img);
         });
     });
 }
 
-module.exports = { getPopular, searchMDB };
+
+
+module.exports = { getPopular, searchMDB, getPoster };

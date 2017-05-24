@@ -33,7 +33,6 @@ function getPoster(poster){
 
 
 
-
 module.exports= {getPopular, searchMDB};
 
 

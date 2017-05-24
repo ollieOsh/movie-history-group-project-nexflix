@@ -7,3 +7,6 @@ https://api.themoviedb.org/3/search/movie?api_key=###&query=Jack+Reacher
 
 Poster:
 https://image.tmdb.org/t/p/w500/${poster_path}
+
+Credits:
+https://api.themoviedb.org/3/movie/550/credits?api_key=###

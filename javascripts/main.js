@@ -106,7 +106,7 @@ $("#favorites").click(function() {
 });
 
 // Get input value and pass it to .. searchMBD
-$(document).on('click', '.find-new-movie', () => {
+$(document).on('click', '#untracked', () => {
 	let inputValue = $('.form-control').val();
 	let movieName = inputValue.replace(/ /gi, '+');
 	mdb.searchMDB(movieName)

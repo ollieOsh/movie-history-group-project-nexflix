@@ -24,14 +24,10 @@ let loadMoviesToDom = () => {
 				// console.log("actors", actors);
 				newObj.cast = actors;
 				comboObj.movies.push(newObj);
-				// let newDiv = document.createElement("div");
-				// newDiv.innerHTML = moviesTemplate(comboObj);
-				// $("#outputArea").append(newDiv);
+				// console.log("comboObj", comboObj);
+				$("#outputArea").html(moviesTemplate(comboObj));
 			});
 		});
-	})
-	.then(function(){
-		console.log("comboObj", comboObj);
 	});
 
 };

@@ -7,3 +7,8 @@ function cardDelete() {
     //movie is removed from users Firebase - call removeFromFB function
     fb.removeFromFB();
 }
+
+//when user clicks - add to watchlist
+$(".watchlist").click(function() {
+    fb.addMovies();
+});

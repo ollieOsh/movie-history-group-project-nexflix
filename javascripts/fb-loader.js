@@ -2,7 +2,7 @@
 
 let firebase = require("./fb-config");
 
-//add to watchlist is click by user - add this data to user FB
+//add to watchlist is clicked by - add this data to user FB
 let addMovies = (movieObj) => {
     console.log("movieObj", movieObj);
     return new Promise(function(resolve, reject) {
@@ -44,3 +44,7 @@ let starsClick = () => {
 let removeFromFB = () => {
     //delete movie from users list of movies
 };
+
+module.exports= {addMovies, getWatchedMovies, getUnwatchedMovies, watchClick, starsClick, removeFromFB};
+
+

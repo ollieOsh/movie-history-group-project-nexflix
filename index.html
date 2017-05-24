@@ -9,7 +9,7 @@
 <body>
 
 <!-- ********* Splash Page Navbar-->
-    <div class="splashNav hide">
+    <div id="splashNav" class="">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,7 +25,7 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logout</a></li>
+                    <li><a id="register-login">Register/Login</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -34,7 +34,7 @@
     <!-- ******************* -->
 
     <!-- ********* Navbar after user has logged in-->
-    <div class="loggedInNav">
+    <div id="loggedInNav" class="hide">
         <nav class="navbar navbar-default">
             <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -59,7 +59,7 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Logout</a></li>
+                    <li><a id="logout">Logout</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -70,7 +70,7 @@
     <h1>Nexflix</h1>
 
     <!-- Watched and Unwatched Buttons -->
-    <div class="btn-group" role="group" aria-label="...">
+    <div id="watchedButtons" class="btn-group hide" role="group" aria-label="...">
         <button type="button" class="btn btn-default">Show Unwatched Movies</button>
         <button type="button" class="btn btn-default">Show Watched Movies</button>
     </div>

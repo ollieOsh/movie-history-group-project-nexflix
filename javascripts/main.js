@@ -4,7 +4,7 @@ let Handlebars = require('hbsfy/runtime'),
 	mdb = require('./mdb-loader.js'),
 	moviesTemplate = require('../templates/populatemovies.hbs');
 let user = require("./user");
-
+let movieDB= require("./mdb-config");
 let comboObj = {
 	movies: []
 };
@@ -24,6 +24,11 @@ Handlebars.registerHelper('grouped_each', function(every, context, options) {
     return out;
 });
 
+            // mdb.getPoster(element.poster_path)
+            // .then(function(poster){
+            //     console.log("poster", poster);
+            // });
+
 let loadMoviesToDom = () => {
 	mdb.getPopular().
 	then(function(songData){
@@ -34,6 +39,8 @@ let loadMoviesToDom = () => {
 			newObj.movie = element.title;
 			newObj.year = element.year;
 			newObj.id = element.id;
+            newObj.poster= `${movieDB.getMDBsettings().posterURL}${element.poster_path}`;
+
 			mdb.getCredits(element.id)
 			.then(function(actors){
 				// console.log("actors", actors);
@@ -41,6 +48,7 @@ let loadMoviesToDom = () => {
 				comboObj.movies.push(newObj);
 				// console.log("comboObj", comboObj);
 				$("#outputArea").html(moviesTemplate(comboObj));
+
 			});
 		});
 	});

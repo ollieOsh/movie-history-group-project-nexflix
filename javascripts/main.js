@@ -8,7 +8,7 @@ let movieDB= require("./mdb-config");
 let comboObj = {
 	movies: []
 };
-
+// Handlebars helper that works with bootstrap grid system to form rows between every 3 items.
 Handlebars.registerHelper('grouped_each', function(every, context, options) {
     var out = "", subcontext = [], i;
     if (context && context.length > 0) {
@@ -23,24 +23,15 @@ Handlebars.registerHelper('grouped_each', function(every, context, options) {
     }
     return out;
 });
+// Popular movies loaders.
 
-            // mdb.getPoster(element.poster_path)
-            // .then(function(poster){
-            //     console.log("poster", poster);
-            // });
 
-let loadMoviesToDom = () => {
+let loadPopularMovies = () => {
 	mdb.getPopular().
 	then(function(songData){
 		console.log("popular", songData);
 		songData.forEach(function(element){
-			var newObj = {};
-			// console.log("element", element);
-			newObj.movie = element.title;
-			newObj.year = element.year;
-			newObj.id = element.id;
-            newObj.poster= `${movieDB.getMDBsettings().posterURL}${element.poster_path}`;
-
+			var newObj = buildNewObj(element);
 			mdb.getCredits(element.id)
 			.then(function(actors){
 				// console.log("actors", actors);
@@ -52,20 +43,16 @@ let loadMoviesToDom = () => {
 			});
 		});
 	});
-
 };
-let fivefifty = "550";
+loadPopularMovies();
+
+//Gets credits to display the actors.
 let getCreditData = (movieId) => {
 	mdb.getCredits(movieId)
 	.then(function(creditData){
 		console.log("creditData", creditData);
 	});
 };
-// loadMoviesToDom();
-// getCreditData(fivefifty);
-// mdb.creditsURL(fivefifty);
-
-
 
 //user login
 $("#register-login").click(function() {
@@ -125,11 +112,7 @@ $(document).on('click', '#untracked', () => {
 	.then((value) => {
     	console.log('Input value is', value);
     	value.forEach(function(element){
-			var newObj = {};
-			// console.log("element", element);
-			newObj.movie = element.title;
-			newObj.year = element.year;
-			newObj.id = element.id;
+			var newObj = buildNewObj(element);
 			mdb.getCredits(element.id)
 			.then(function(actors){
 				// console.log("actors", actors);
@@ -138,8 +121,19 @@ $(document).on('click', '#untracked', () => {
 				// console.log("comboObj", comboObj);
 				$("#outputArea").html(moviesTemplate(comboObj));
 			});
+			console.log("comboObj", comboObj);
 		});
 	});
 });
 
-
+//Build New Object
+let buildNewObj = (element) => {
+	let newObj = {
+		movie: `${element.title}`,
+		year: `${element.year}`,
+		id: `${element.id}`,
+		poster: `${movieDB.getMDBsettings().posterURL}${element.poster_path}`,
+		mdb: `${element.mdb}`
+	};
+	return newObj;
+};

@@ -10,12 +10,6 @@ function getPopular(){
         }).done(function(movieData){
             movieData.results.forEach(function(element){
                 let movieObj = buildMDBMovieObj(element);
-                // let movieObj = {
-                //     title: `${element.title}`,
-                //     year: `${element.release_date}`,
-                //     id: `${element.id}`,
-                //     mdb: "mdb"
-                // };
                 moviesArray.push(movieObj);
             });
             resolve(moviesArray);
@@ -73,5 +67,5 @@ let buildMDBMovieObj = (element) => {
     return movieObj;
 };
 
-module.exports= {getPopular, searchMDB, getCredits};
+module.exports= {getPopular, searchMDB, getCredits, buildMDBMovieObj};
 

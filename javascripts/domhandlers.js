@@ -60,4 +60,6 @@ $(document).on("click", ".addToWatchlist", function(event){
         user: userName
     };
     console.log(addToWatchlistObj);
+    fb.addMovies(addToWatchlistObj);
+
 });

@@ -8,7 +8,7 @@ let addMovies = (movieObj) => {
     return new Promise(function(resolve, reject) {
         $.ajax({
             url: `${firebase.getFBsettings().databaseURL}`,
-            type: "POST",
+            type: 'POST',
             data: JSON.stringify(movieObj),
             dataType: 'json'
         }).done(function(movieID) {

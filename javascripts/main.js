@@ -8,6 +8,14 @@ let movieDB= require("./mdb-config");
 let comboObj = {
 	movies: []
 };
+
+//Popup for immediate user login on page load
+user.logInGoogle()
+  	.then(function(result) {
+    	console.log("result from Login", result.user.uid);
+    	user.setUser(result.user.uid);
+    });
+
 // Handlebars helper that works with bootstrap grid system to form rows between every 3 items.
 Handlebars.registerHelper('grouped_each', function(every, context, options) {
     var out = "", subcontext = [], i;
@@ -25,24 +33,24 @@ Handlebars.registerHelper('grouped_each', function(every, context, options) {
 });
 // Popular movies loaders.
 
-
+// WE DON'T NEED THIS RIGHT NOW
 let loadPopularMovies = () => {
-	mdb.getPopular().
-	then(function(songData){
-		console.log("popular", songData);
-		songData.forEach(function(element){
-			var newObj = buildNewObj(element);
-			mdb.getCredits(element.id)
-			.then(function(actors){
-				// console.log("actors", actors);
-				newObj.cast = actors;
-				comboObj.movies.push(newObj);
-				// console.log("comboObj", comboObj);
-				$("#outputArea").html(moviesTemplate(comboObj));
+	// mdb.getPopular().
+	// then(function(songData){
+	// 	console.log("popular", songData);
+	// 	songData.forEach(function(element){
+	// 		var newObj = buildNewObj(element);
+	// 		mdb.getCredits(element.id)
+	// 		.then(function(actors){
+	// 			// console.log("actors", actors);
+	// 			newObj.cast = actors;
+	// 			comboObj.movies.push(newObj);
+	// 			// console.log("comboObj", comboObj);
+	// 			$("#outputArea").html(moviesTemplate(comboObj));
 
-			});
-		});
-	});
+	// 		});
+	// 	});
+	// });
 };
 loadPopularMovies();
 
@@ -62,9 +70,9 @@ $("#register-login").click(function() {
     console.log("result from Login", result.user.uid);
     user.setUser(result.user.uid);
     // loadMoviesToDom();
-    $("#splashNav").addClass("hide");
-    $("#loggedInNav").removeClass("hide");
-    $("#watchedButtons").removeClass("hide");
+    // $("#splashNav").addClass("hide");
+    // $("#loggedInNav").removeClass("hide");
+    // $("#watchedButtons").removeClass("hide");
   });
 });
 
@@ -73,6 +81,7 @@ $("#logout").click(function() {
     console.log("logout clicked");
     user.logOut();
     $("#splashNav").removeClass("hide");
+    $("#noUser").removeClass("hide");
     $("#loggedInNav").addClass("hide");
     $("#watchedButtons").addClass("hide");
 });

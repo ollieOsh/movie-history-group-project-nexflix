@@ -131,16 +131,6 @@ $(document).on('click', '#untracked', () => {
 	});
 });
 
-// Get input value and pass it to .. searchMBD
-$(document).on('click', '#untracked', () => {
-    let inputValue = $('.form-control').val();
-    let movieName = inputValue.replace(/ /gi, '+');
-    mdb.searchMDB(movieName)
-    .then((value) => {
-        console.log('Input value is', movieName);
-    });
-});
-
 //Build New Object
 let buildNewObj = (element) => {
 	let newObj = {

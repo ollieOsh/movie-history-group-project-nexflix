@@ -1,6 +1,5 @@
 "use strict";
 
-<<<<<<< HEAD
 let fb = require("./fb-loader");
 
 function cardDelete() {

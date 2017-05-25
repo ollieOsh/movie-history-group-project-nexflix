@@ -54,9 +54,9 @@ let getCreditData = (movieId) => {
 	});
 };
 
-loadMoviesToDom();
-getCreditData(fivefifty);
-mdb.creditsURL(fivefifty);
+loadPopularMovies();
+// getCreditData(fivefifty);
+// mdb.creditsURL(fivefifty);
 
 
 //user login

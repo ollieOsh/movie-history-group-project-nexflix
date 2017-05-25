@@ -51,14 +51,16 @@ $(document).on("click", ".addToWatchlist", function(event){
     var poster = watchlistButton.querySelector(".poster").src;
     console.log('poster', poster);
     var userName = user.getUser();
+    var id = event.currentTarget.offsetParent.id;
     var addToWatchlistObj = {
         movie: title,
         cast: actors,
         year: date,
         poster: poster,
         stars: null,
-        boolean: false,
+        watched: false,
         fb: "fb",
+        id: id,
         user: userName
     };
     console.log(addToWatchlistObj);

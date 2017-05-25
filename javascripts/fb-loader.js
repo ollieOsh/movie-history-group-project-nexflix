@@ -44,9 +44,14 @@ let getWatchedMovies = () => {
 };
 
 let removeFromFB = () => {
-    return new Promise((resolve, reject)=>{
-
-    });
+    // return new Promise((resolve, reject)=>{
+    //     $.ajax({
+    //         url: `${firebase.getFBsettings().databaseURL}/movies/${songID}.json`,
+    //         type: 'DELETE'
+    //     }).done(function(){
+    //         resolve();
+    //     });
+    // });
 };
 
 let watchClick = () => {

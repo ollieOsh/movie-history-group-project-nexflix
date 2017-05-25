@@ -17,20 +17,22 @@ let addMovies = (movieObj) => {
     });
 };
 
+let getUnwatchedMovies = () => {
+
+};
+
 let getWatchedMovies = () => {
-    //clicks show watched
-    //watched view
-    //stars appears under card
+
 };
 
 let removeFromFB = () => {
-    //delete movie from users list of movies
+
 };
 
 let watchClick = () => {
-//watch clicked - true or false on FB
-//if true - append stars
-//POST:
+    //watch clicked - true or false on FB
+    //if true - append stars
+    //POST:
 };
 
 let starsClick = () => {
@@ -39,6 +41,6 @@ let starsClick = () => {
     //PATCH:
 };
 
-module.exports= {addMovies, getWatchedMovies, removeFromFB, watchClick, starsClick};
+module.exports= {addMovies, getUnwatchedMovies, getWatchedMovies, removeFromFB, watchClick, starsClick};
 
 

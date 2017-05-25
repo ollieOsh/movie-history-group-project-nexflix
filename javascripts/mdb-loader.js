@@ -12,7 +12,8 @@ function getPopular(){
                 let movieObj = {
                     title: `${element.title}`,
                     year: `${element.release_date}`,
-                    id: `${element.id}`
+                    id: `${element.id}`,
+                    poster_path: `${element.poster_path}`
                 };
                 moviesArray.push(movieObj);
             });
@@ -43,12 +44,17 @@ function searchMDB(movieName) {
 function getPoster(poster){
     return new Promise(function(resolve,reject){
         $.ajax({
-            url: `${movieDB.getMDBsettings().posterURL}`
+            url: `${movieDB.getMDBsettings().posterURL}${poster}`
+
         }).done(function(img){
+            console.log("poster", `${movieDB.getMDBsettings().posterURL}${poster}` );
             resolve(img);
+        }).fail(function(error){
+            console.log(error);
         });
     });
 }
+
 
 function getCredits (movieId){
     return new Promise(function(resolve, reject){
@@ -65,5 +71,6 @@ function getCredits (movieId){
     });
 }
 
-module.exports= {getPopular, searchMDB, getCredits};
+module.exports= {getPopular, searchMDB, getCredits, getPoster};
+
 

@@ -61,9 +61,9 @@ let getCreditData = (movieId) => {
 		console.log("creditData", creditData);
 	});
 };
-// loadMoviesToDom();
-// getCreditData(fivefifty);
-// mdb.creditsURL(fivefifty);
+loadMoviesToDom();
+getCreditData(fivefifty);
+mdb.creditsURL(fivefifty);
 
 
 

@@ -3,16 +3,18 @@
 let fb = require("./fb-loader"),
     user = require("./user");
 
-function cardDelete() {
+function cardDelete(id) {
     //user clicks the x and card is deleted
     //movie is removed from users Firebase - call removeFromFB function
-    fb.removeFromFB();
+    $('#'+id).remove();
+    let fbID = id;
+    fb.removeFromFB(fbID);
 }
 
 //user clicks "x" - run removeFromFB
-$(document).on('click', '.glyphicon', () => {
-    console.log("glyphicon has been clicked");
-    // fb.removeFromFB();
+$(document).on('click', '.glyphicon', (event) => {
+    console.log("glyphicon has been clicked", event.target.offsetParent.offsetParent.id);
+    cardDelete(event.target.offsetParent.offsetParent.id);
 });
 
 //user clicks on the stars - run starsClick

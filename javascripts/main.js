@@ -96,9 +96,17 @@ $("#unwatched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
     $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
     fb.getUnwatchedMovies()
-    	.then(
-    		outputToDOM
-    	);
+    	.then(function(data){
+        console.log("got ish", data);
+
+    // A function that changes the object id value to the random ass Firebase object name
+        let idArray = Object.keys(data);
+        idArray.forEach(function(key){
+          data[key].id = key;
+        });
+    	console.log('song object with id', data);
+    	outputToDOM(data);
+    });
 });
 
 //user clicks watched search filter and breadcrumbs appear

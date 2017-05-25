@@ -43,15 +43,15 @@ let getWatchedMovies = () => {
     });
 };
 
-let removeFromFB = () => {
-    // return new Promise((resolve, reject)=>{
-    //     $.ajax({
-    //         url: `${firebase.getFBsettings().databaseURL}/movies/${songID}.json`,
-    //         type: 'DELETE'
-    //     }).done(function(){
-    //         resolve();
-    //     });
-    // });
+let removeFromFB = (id) => {
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies/${id}.json`,
+            type: 'DELETE'
+        }).done(function(){
+            resolve();
+        });
+    });
 };
 
 let watchClick = () => {

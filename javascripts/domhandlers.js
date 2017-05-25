@@ -1,5 +1,6 @@
 "use strict";
 
+<<<<<<< HEAD
 let fb = require("./fb-loader");
 
 function cardDelete() {
@@ -33,4 +34,8 @@ $(".watched").click(function() {
 //user clicks show favorite movies
 $(".favorite").click(function() {
     fb.getUnwatchedMovies();
+});
+
+$(document).on("click", ".addToWatchList", function(){
+
 });

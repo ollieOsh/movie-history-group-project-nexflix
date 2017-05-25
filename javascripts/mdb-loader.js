@@ -9,12 +9,7 @@ function getPopular(){
             url: `${movieDB.getMDBsettings().popularURL}`
         }).done(function(movieData){
             movieData.results.forEach(function(element){
-                let movieObj = {
-                    title: `${element.title}`,
-                    year: `${element.release_date}`,
-                    id: `${element.id}`,
-                    poster_path: `${element.poster_path}`
-                };
+                let movieObj = buildMDBMovieObj(element);
                 moviesArray.push(movieObj);
             });
             resolve(moviesArray);
@@ -30,11 +25,7 @@ function searchMDB(movieName) {
         }).done(function(movie) {
             let searchMDBArray = [];
             movie.results.forEach(function(element){
-                let searchMdbObj = {
-                    title: `${element.title}`,
-                    year: `${element.release_date}`,
-                    id: `${element.id}`
-                };
+                let searchMdbObj = buildMDBMovieObj(element);
                 searchMDBArray.push(searchMdbObj);
             });
             resolve(searchMDBArray);
@@ -71,6 +62,15 @@ function getCredits (movieId){
     });
 }
 
+let buildMDBMovieObj = (element) => {
+    let movieObj = {
+                    title: `${element.title}`,
+                    year: `${element.release_date}`,
+                    id: `${element.id}`,
+                    poster_path: `${element.poster_path}`,
+                    mdb: "mdb"
+                };
+    return movieObj;
+};
+
 module.exports= {getPopular, searchMDB, getCredits, getPoster};
-
-

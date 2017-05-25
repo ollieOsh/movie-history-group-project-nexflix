@@ -98,7 +98,7 @@ $("#unwatched").click(function() {
     fb.getUnwatchedMovies()
     	.then(
     		outputToDOM
-    		);
+    	);
 });
 
 //user clicks watched search filter and breadcrumbs appear

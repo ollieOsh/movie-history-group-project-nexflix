@@ -52,9 +52,9 @@ $(document).on("click", ".addToWatchlist", function(event){
     console.log('poster', poster);
     var userName = user.getUser();
     var addToWatchlistObj = {
-        title: title,
-        actors: actors,
-        date: date,
+        movie: title,
+        cast: actors,
+        year: date,
         poster: poster,
         stars: null,
         boolean: false,

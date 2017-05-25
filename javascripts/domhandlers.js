@@ -21,9 +21,10 @@ $(".stars").click(function() {
 });
 
 //user clicks show unwatched movies
-$(".unwatched").click(function() {
-    fb.getUnwatchedMovies();
-});
+// $(".unwatched").click(function() {
+//     fb.getUnwatchedMovies()
+
+// });
 
 //user clicks show watched movies
 $(".watched").click(function() {

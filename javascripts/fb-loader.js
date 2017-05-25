@@ -1,13 +1,13 @@
 "use strict";
 
 let firebase = require("./fb-config");
-
+let user = require("./user.js");
 //add to watchlist is clicked - add this data to user FB
 let addMovies = (movieObj) => {
     console.log("movieObj", movieObj);
     return new Promise(function(resolve, reject) {
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy="uid"&equalTo="${movieObj.user}`,
+            url: `${firebase.getFBsettings().databaseURL}/movies.json`,
             type: 'POST',
             data: JSON.stringify(movieObj),
             dataType: 'json'
@@ -20,22 +20,25 @@ let addMovies = (movieObj) => {
 let getUnwatchedMovies = () => {
     return new Promise((resolve, reject)=>{
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}`,
+            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy="user"&equalTo="${user.getUser()}"`,
             type: 'GET'
 
         }).done(function(data){
             console.log(data);
+            resolve(data);
         });
     });
 };
 
+
 let getWatchedMovies = () => {
     return new Promise((resolve, reject)=>{
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}`,
+            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy=user&equalTo=${user.getUser()}`,
             type: 'GET'
         }).done(function(data){
             console.log(data);
+            resolve(data);
         });
     });
 };

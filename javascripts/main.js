@@ -8,7 +8,7 @@ let movieDB= require("./mdb-config");
 let comboObj = {
 	movies: []
 };
-
+let fb = require('./fb-loader.js');
 //Popup for immediate user login on page load
 user.logInGoogle()
   	.then(function(result) {
@@ -95,6 +95,10 @@ $("#untracked").click(function() {
 $("#unwatched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
     $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
+    fb.getUnwatchedMovies()
+    	.then(
+    		outputToDOM
+    		);
 });
 
 //user clicks watched search filter and breadcrumbs appear
@@ -170,10 +174,22 @@ let buildNewObj = (element) => {
 		movie: `${element.title}`,
 		year: `${element.year}`,
 		id: `${element.id}`,
-		mdb: `${element.mdb}`
+		mdb: `${element.mdb}`,
+		uid: user.getUser()
 	};
 	if(element.poster_path){
 		newObj.poster = `${movieDB.getMDBsettings().posterURL}${element.poster_path}`;
 	}
 	return newObj;
+};
+
+let outputToDOM = (object) =>{
+	//let array = [];
+	let bigObj = {movies: []};
+	for(let prop in object) {
+		console.log("prop", prop);
+		bigObj.movies.push(object[prop]);
+	}
+	console.log("bigObj", bigObj);
+	$("#outputArea").html(moviesTemplate(bigObj));
 };

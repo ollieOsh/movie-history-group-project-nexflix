@@ -4,7 +4,7 @@ let Handlebars = require('hbsfy/runtime'),
 	mdb = require('./mdb-loader.js'),
 	moviesTemplate = require('../templates/populatemovies.hbs');
 let user = require("./user");
-
+let movieDB= require("./mdb-config");
 let comboObj = {
 	movies: []
 };
@@ -25,6 +25,7 @@ Handlebars.registerHelper('grouped_each', function(every, context, options) {
 });
 // Popular movies loaders.
 
+
 let loadPopularMovies = () => {
 	mdb.getPopular().
 	then(function(songData){
@@ -38,11 +39,12 @@ let loadPopularMovies = () => {
 				comboObj.movies.push(newObj);
 				// console.log("comboObj", comboObj);
 				$("#outputArea").html(moviesTemplate(comboObj));
+
 			});
 		});
 	});
-
 };
+loadPopularMovies();
 
 //Gets credits to display the actors.
 let getCreditData = (movieId) => {
@@ -130,6 +132,7 @@ let buildNewObj = (element) => {
 		movie: `${element.title}`,
 		year: `${element.year}`,
 		id: `${element.id}`,
+		poster: `${movieDB.getMDBsettings().posterURL}${element.poster_path}`,
 		mdb: `${element.mdb}`
 	};
 	return newObj;

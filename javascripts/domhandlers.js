@@ -5,14 +5,15 @@ let fb = require("./fb-loader"),
 
 function cardDelete(id) {
     //user clicks the x and card is deleted
-    //movie is removed from users Firebase - call removeFromFB function
     $('#'+id).remove();
     let fbID = id;
+    //movie is removed from users Firebase - call removeFromFB function
     fb.removeFromFB(fbID);
 }
 
 //user clicks "x" - run removeFromFB
 $(document).on('click', '.glyphicon', (event) => {
+    //Spits back id of the div containing the glyphicon
     console.log("glyphicon has been clicked", event.target.offsetParent.offsetParent.id);
     cardDelete(event.target.offsetParent.offsetParent.id);
 });
@@ -69,8 +70,7 @@ $(document).on("click", ".addToWatchlist", function(event){
 
     fb.addMovies(addToWatchlistObj);
 
-
-
-    // SOMEWHERE IN HERE IS WHERE FB.ADDMOVIES GETS CALLED
+// Remove element from DOM
+    $('#'+id).remove();
 
 });

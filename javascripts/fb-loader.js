@@ -18,15 +18,32 @@ let addMovies = (movieObj) => {
 };
 
 let getUnwatchedMovies = () => {
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}`,
+            type: 'GET'
 
+        }).done(function(data){
+            console.log(data);
+        });
+    });
 };
 
 let getWatchedMovies = () => {
-
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}`,
+            type: 'GET'
+        }).done(function(data){
+            console.log(data);
+        });
+    });
 };
 
 let removeFromFB = () => {
+    return new Promise((resolve, reject)=>{
 
+    });
 };
 
 let watchClick = () => {
@@ -39,6 +56,10 @@ let starsClick = () => {
     //starts clicked - rating sent to FB
     //ammount of stars clicked needs to appear on the DOM
     //PATCH:
+};
+
+let addToList = () =>{
+
 };
 
 module.exports= {addMovies, getUnwatchedMovies, getWatchedMovies, removeFromFB, watchClick, starsClick};

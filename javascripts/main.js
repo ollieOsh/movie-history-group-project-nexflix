@@ -136,8 +136,10 @@ $(document).on('click', '#untracked', () => {
 });
 
 // Press ENTER in Search Bar to search Untracked Movies
-$(".form-control").keypress(function(key){
+$("#search").keypress(function(key){
+			console.log("pressed enter");
 	if(key.which == 13){
+
 		let inputValue = $('#search').val();
 		let movieName = inputValue.replace(/ /gi, '+');
 		$("#outputArea").html(null);

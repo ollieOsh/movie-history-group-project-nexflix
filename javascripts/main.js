@@ -9,6 +9,27 @@ let comboObj = {
 	movies: []
 };
 
+// Star Rating Plugin Settings
+$(".rating").rating({stars:10, min:1, max:10, step:1, size:'xs',
+    starCaptions:{
+    1: '1',
+    2: '2',
+    3: '3',
+    4: '4',
+    5: '5',
+    6: '6',
+    7: '7',
+    8: '8',
+    9: '9',
+    10: '10'
+}});
+console.log("Main.JS has loaded2");
+
+
+
+
+
+
 //Popup for immediate user login on page load
 user.logInGoogle()
   	.then(function(result) {

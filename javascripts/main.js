@@ -94,11 +94,11 @@ $("#watched").click(function() {
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
 });
 
-//user clicks favorites search filter and breadcrumbs appear
-$("#favorites").click(function() {
-    $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
-    $("#breadcrumb").append(`<li class="search-results">Favorites</li>`);
-});
+// //user clicks favorites search filter and breadcrumbs appear
+// $("#favorites").click(function() {
+//     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
+//     $("#breadcrumb").append(`<li class="search-results">Favorites</li>`);
+// });
 
 // Get input value and pass it to .. searchMBD
 $(document).on('click', '#untracked', () => {

@@ -111,7 +111,7 @@ $("#watched").click(function() {
 
 // Get input value and pass it to .. searchMBD
 $(document).on('click', '#untracked', () => {
-	let inputValue = $('.form-control').val();
+	let inputValue = $('#search').val();
 	let movieName = inputValue.replace(/ /gi, '+');
 	$("#outputArea").html(null);
 	comboObj = {
@@ -135,14 +135,45 @@ $(document).on('click', '#untracked', () => {
 	});
 });
 
+// Press ENTER in Search Bar to search Untracked Movies
+$(".form-control").keypress(function(key){
+	if(key.which == 13){
+		let inputValue = $('#search').val();
+		let movieName = inputValue.replace(/ /gi, '+');
+		$("#outputArea").html(null);
+		comboObj = {
+			movies: []
+		};
+	    	console.log('Input value is', inputValue);
+		mdb.searchMDB(movieName)
+		.then((value) => {
+	    	value.forEach(function(element){
+	    		console.log("WHY THEY USE VALUE", value);
+				var newObj = buildNewObj(element);
+				mdb.getCredits(element.id)
+				.then(function(actors){
+					// console.log("actors", actors);
+					newObj.cast = actors;
+					comboObj.movies.push(newObj);
+					// console.log("comboObj", comboObj);
+					$("#outputArea").html(moviesTemplate(comboObj));
+				});
+				console.log("comboObj", comboObj);
+			});
+		});
+	}
+});
+
 //Build New Object
 let buildNewObj = (element) => {
 	let newObj = {
 		movie: `${element.title}`,
 		year: `${element.year}`,
 		id: `${element.id}`,
-		poster: `${movieDB.getMDBsettings().posterURL}${element.poster_path}`,
 		mdb: `${element.mdb}`
 	};
+	if(element.poster_path){
+		newObj.poster = `${movieDB.getMDBsettings().posterURL}${element.poster_path}`;
+	}
 	return newObj;
 };

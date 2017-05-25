@@ -21,9 +21,10 @@ $(".stars").click(function() {
 });
 
 //user clicks show unwatched movies
-$(".unwatched").click(function() {
-    fb.getUnwatchedMovies();
-});
+// $(".unwatched").click(function() {
+//     fb.getUnwatchedMovies()
+
+// });
 
 //user clicks show watched movies
 $(".watched").click(function() {
@@ -51,9 +52,9 @@ $(document).on("click", ".addToWatchlist", function(event){
     console.log('poster', poster);
     var userName = user.getUser();
     var addToWatchlistObj = {
-        title: title,
-        actors: actors,
-        date: date,
+        movie: title,
+        cast: actors,
+        year: date,
         poster: poster,
         stars: null,
         boolean: false,
@@ -62,5 +63,10 @@ $(document).on("click", ".addToWatchlist", function(event){
     };
     console.log(addToWatchlistObj);
 
+    fb.addMovies(addToWatchlistObj);
+
+
+
     // SOMEWHERE IN HERE IS WHERE FB.ADDMOVIES GETS CALLED
+
 });

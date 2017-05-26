@@ -25,10 +25,8 @@ $(".rating").rating({stars:10, min:1, max:10, step:1, size:'xs',
 }});
 console.log("Main.JS has loaded2");
 
-
-
-
-
+let fb = require('./fb-loader.js');
+var Slider = require("bootstrap-slider");
 
 //Popup for immediate user login on page load
 user.logInGoogle()
@@ -116,12 +114,25 @@ $("#untracked").click(function() {
 $("#unwatched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
     $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
+    fb.getUnwatchedMovies()
+    	.then(function(data){
+    // A function that changes the object id value to the random ass Firebase object name
+        let idArray = Object.keys(data);
+        idArray.forEach(function(key){
+          data[key].id = key;
+        });
+    	outputToDOM(data);
+    });
 });
 
 //user clicks watched search filter and breadcrumbs appear
 $("#watched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
+    fb.getWatchedMovies()
+    	.then(function(data){
+    		outputToDOM(data);
+    	});
 });
 
 // //user clicks favorites search filter and breadcrumbs appear
@@ -157,8 +168,10 @@ $(document).on('click', '#untracked', () => {
 });
 
 // Press ENTER in Search Bar to search Untracked Movies
-$(".form-control").keypress(function(key){
+$("#search").keypress(function(key){
+console.log("pressed enter");
 	if(key.which == 13){
+		$("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
 		let inputValue = $('#search').val();
 		let movieName = inputValue.replace(/ /gi, '+');
 		$("#outputArea").html(null);
@@ -191,10 +204,66 @@ let buildNewObj = (element) => {
 		movie: `${element.title}`,
 		year: `${element.year}`,
 		id: `${element.id}`,
-		mdb: `${element.mdb}`
+		mdb: `${element.mdb}`,
+		uid: user.getUser()
 	};
-	if(element.poster_path){
+	if(element.poster_path != 'null'){
 		newObj.poster = `${movieDB.getMDBsettings().posterURL}${element.poster_path}`;
+	}else {
+		newObj.poster = "http://img02.deviantart.net/877e/i/2012/328/d/c/derpy_in_a_hole_by_uxyd-d5lz63l.png";
 	}
 	return newObj;
 };
+
+let outputToDOM = (object) =>{
+	//let array = [];
+	let bigObj = {movies: []};
+	for(let prop in object) {
+		console.log("prop", prop);
+		bigObj.movies.push(object[prop]);
+	}
+	console.log("bigObj", bigObj);
+	$("#outputArea").html(moviesTemplate(bigObj));
+};
+
+
+let filterUntracked = (apiObj) => {
+
+};
+
+//slider bullshit-- shit don't work right now //
+
+	let sliderText = $("#slider-text"),
+		sliderVal = $("#slider").val(),
+		sliderBtn = $("#star-log");
+
+		function updateaSliderVal(val){
+
+	sliderText.html().append(sliderVal);
+	sliderBtn.click(console.log("shit was clicked"));
+
+}
+
+// let slider = $("#slider");
+// 	starSlider = slider.val();
+// 		if(starSlider == 1){
+// 			return
+// 		}else if(starSlider == 2){
+// 			return
+// 		}else if(starSlider == 3){
+// 			return
+// 		}else if(starSlider == 4){
+// 			return
+// 		}else if(starSlider == 5){
+// 			return
+// 		}else if(starSlider == 6){
+// 			return
+// 		}else if(starSlider == 7){
+// 			return
+// 		}else if(starSlider == 8){
+// 			return
+// 		}else if(starSlider == 9){
+// 			return
+// 		}else if(starSlider == 10){
+// 			return
+// 		} break;

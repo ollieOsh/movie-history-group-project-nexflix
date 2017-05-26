@@ -3,27 +3,32 @@
 let fb = require("./fb-loader"),
     user = require("./user");
 
-function cardDelete() {
+function cardDelete(id) {
     //user clicks the x and card is deleted
+    $('#'+id).remove();
+    let fbID = id;
     //movie is removed from users Firebase - call removeFromFB function
-    fb.removeFromFB();
+    fb.removeFromFB(fbID);
 }
 
 //user clicks "x" - run removeFromFB
-$(document).on('click', '.glyphicon', () => {
-    console.log("glyphicon has been clicked");
-    // fb.removeFromFB();
+$(document).on('click', '.glyphicon', (event) => {
+    //Spits back id of the div containing the glyphicon
+    console.log("glyphicon has been clicked", event.target.offsetParent.offsetParent.id);
+    cardDelete(event.target.offsetParent.offsetParent.id);
 });
 
 //user clicks on the stars - run starsClick
-$(".stars").click(function() {
-    fb.starsClick();
+$(document).on('click', "span.btn", function(event) {
+    console.log("I'M THA FUCKING BEST BITCH", event.target.offsetParent.id);
+    fb.starsClick(event.target.offsetParent.id);
 });
 
 //user clicks show unwatched movies
-$(".unwatched").click(function() {
-    fb.getUnwatchedMovies();
-});
+// $(".unwatched").click(function() {
+//     fb.getUnwatchedMovies()
+
+// });
 
 //user clicks show watched movies
 $(".watched").click(function() {
@@ -50,17 +55,23 @@ $(document).on("click", ".addToWatchlist", function(event){
     var poster = watchlistButton.querySelector(".poster").src;
     console.log('poster', poster);
     var userName = user.getUser();
+    var id = event.currentTarget.offsetParent.id;
     var addToWatchlistObj = {
-        title: title,
-        actors: actors,
-        date: date,
+        movie: title,
+        cast: actors,
+        year: date,
         poster: poster,
         stars: null,
-        boolean: false,
-        fb: "fb",
+        watched: false,
+        fb: id,
+        id: id,
         user: userName
     };
     console.log(addToWatchlistObj);
 
-    // SOMEWHERE IN HERE IS WHERE FB.ADDMOVIES GETS CALLED
+    fb.addMovies(addToWatchlistObj);
+
+// Remove element from DOM
+    $('#'+id).remove();
+
 });

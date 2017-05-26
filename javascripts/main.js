@@ -191,8 +191,10 @@ let buildNewObj = (element) => {
 		mdb: `${element.mdb}`,
 		uid: user.getUser()
 	};
-	if(element.poster_path){
+	if(element.poster_path != 'null'){
 		newObj.poster = `${movieDB.getMDBsettings().posterURL}${element.poster_path}`;
+	}else {
+		newObj.poster = "http://img02.deviantart.net/877e/i/2012/328/d/c/derpy_in_a_hole_by_uxyd-d5lz63l.png";
 	}
 	return newObj;
 };

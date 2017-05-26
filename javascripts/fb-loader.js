@@ -59,6 +59,7 @@ let removeFromFB = (id) => {
     });
 };
 
+
 let getAllUserMovies = () => {
     return new Promise((resolve, reject) => {
         $.ajax({

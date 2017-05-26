@@ -110,6 +110,10 @@ $("#unwatched").click(function() {
 $("#watched").click(function() {
     $("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
+    fb.getWatchedMovies()
+    	.then(function(data){
+
+    	});
 });
 
 // //user clicks favorites search filter and breadcrumbs appear

@@ -9,6 +9,7 @@ let comboObj = {
 	movies: []
 };
 let fb = require('./fb-loader.js');
+var Slider = require("bootstrap-slider");
 //Popup for immediate user login on page load
 user.logInGoogle()
   	.then(function(result) {
@@ -209,3 +210,42 @@ let outputToDOM = (object) =>{
 	console.log("bigObj", bigObj);
 	$("#outputArea").html(moviesTemplate(bigObj));
 };
+
+//slider bullshit-- shit don't work right now //
+
+	let sliderText = $("#slider-text"),
+		sliderVal = $("#slider").val(),
+		sliderBtn = $("#star-log");
+
+		function updateaSliderVal(val){
+
+	sliderText.html().append(sliderVal);
+	sliderBtn.click(console.log("shit was clicked"));
+
+}
+
+// let slider = $("#slider");
+// 	starSlider = slider.val();
+// 		if(starSlider == 1){
+// 			return
+// 		}else if(starSlider == 2){
+// 			return
+// 		}else if(starSlider == 3){
+// 			return
+// 		}else if(starSlider == 4){
+// 			return
+// 		}else if(starSlider == 5){
+// 			return
+// 		}else if(starSlider == 6){
+// 			return
+// 		}else if(starSlider == 7){
+// 			return
+// 		}else if(starSlider == 8){
+// 			return
+// 		}else if(starSlider == 9){
+// 			return
+// 		}else if(starSlider == 10){
+// 			return
+// 		} break;
+
+

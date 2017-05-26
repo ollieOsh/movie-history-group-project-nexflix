@@ -65,7 +65,6 @@ let removeFromFB = (id) => {
     });
 };
 
-
 let getAllUserMovies = () => {
     return new Promise((resolve, reject) => {
         $.ajax({
@@ -84,10 +83,20 @@ let watchClick = () => {
     //POST:
 };
 
-let starsClick = () => {
+let starsClick = (id) => {
     //starts clicked - rating sent to FB
     //ammount of stars clicked needs to appear on the DOM
     //PATCH:
+    console.log("I CLICKED A IMAGE");
+    return new Promise((resolve, reject)=>{
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies/${id}.json`,
+            type: 'PATCH',
+            data: JSON.stringify({watched: true})
+        }).done(function(){
+            resolve();
+        });
+    });
 };
 
 let addToList = () =>{

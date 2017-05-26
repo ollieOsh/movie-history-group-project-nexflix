@@ -19,8 +19,9 @@ $(document).on('click', '.glyphicon', (event) => {
 });
 
 //user clicks on the stars - run starsClick
-$(".stars").click(function() {
-    fb.starsClick();
+$(document).on('click', "span.btn", function(event) {
+    console.log("I'M THA FUCKING BEST BITCH", event.target.offsetParent.id);
+    fb.starsClick(event.target.offsetParent.id);
 });
 
 //user clicks show unwatched movies

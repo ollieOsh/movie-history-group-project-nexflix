@@ -54,7 +54,7 @@ let removeFromFB = (id) => {
     });
 };
 
-let watchClick = () => {
+let watchClick = (obj) => {
     //watch clicked - true or false on FB
     //if true - append stars
     //POST:

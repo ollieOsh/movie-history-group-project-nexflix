@@ -62,7 +62,7 @@ $(document).on("click", ".addToWatchlist", function(event){
         poster: poster,
         stars: null,
         watched: false,
-        fb: "fb",
+        fb: id,
         id: id,
         user: userName
     };

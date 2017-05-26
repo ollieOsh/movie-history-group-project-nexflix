@@ -27,3 +27,19 @@
   transform: rotateX(0deg);
   text-shadow: 0 0 30px #ffc;
 }}
+
+#slider-area{
+  display: flex;
+}
+
+#slider{
+  width: 30%;
+  position: center;
+  margin-left: 6em;
+}
+
+#star-log{
+  flex: left;
+  margin: 10px;
+  padding: 6px;
+}

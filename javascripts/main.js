@@ -123,22 +123,23 @@ $("#unwatched").click(function() {
     	outputToDOM(data);
     }).then(function(){
     	require("../lib/node_modules/bootstrap-star-rating/js/star-rating.min.js");
-    }).then(function(){
-    	//Star Rating Plugin Settings
-		$(".rating").rating({
-		    starCaptions:{
-		    1: '1',
-		    2: '2',
-		    3: '3',
-		    4: '4',
-		    5: '5',
-		    6: '6',
-		    7: '7',
-		    8: '8',
-		    9: '9',
-		    10: '10'
-		}});
     });
+  //   .then(function(){
+  //   	//Star Rating Plugin Settings
+		// $(".rating").rating({
+		//     starCaptions:{
+		//     1: '1',
+		//     2: '2',
+		//     3: '3',
+		//     4: '4',
+		//     5: '5',
+		//     6: '6',
+		//     7: '7',
+		//     8: '8',
+		//     9: '9',
+		//     10: '10'
+		// }});
+  //   });
 });
 
 //user clicks watched search filter and breadcrumbs appear
@@ -147,8 +148,17 @@ $("#watched").click(function() {
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
     fb.getWatchedMovies()
     	.then(function(data){
+    		let idArray = Object.keys(data);
+        	idArray.forEach(function(key){
+          		data[key].id = key;
+        	});
     		outputToDOM(data);
-    	});
+    	}).then(function(){
+    		$(document).on("ready", function(){
+    			require("../lib/node_modules/bootstrap-star-rating/js/star-rating.min.js");
+    		});
+
+    });
 });
 
 // //user clicks favorites search filter and breadcrumbs appear

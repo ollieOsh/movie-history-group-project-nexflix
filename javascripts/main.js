@@ -155,7 +155,7 @@ $(document).on('click', '#untracked', () => {
 $("#search").keypress(function(key){
 			console.log("pressed enter");
 	if(key.which == 13){
-
+		$("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
 		let inputValue = $('#search').val();
 		let movieName = inputValue.replace(/ /gi, '+');
 		$("#outputArea").html(null);

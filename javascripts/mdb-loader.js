@@ -54,8 +54,17 @@ function getCredits (movieId){
         }).done(function(credits){
             let actorsArray = [];
             var i;
-            for (i = 0; i < 4; i++){
-                actorsArray.push(credits.cast[i].name);
+            console.log("FUCKING CREDITS", credits.cast.length);
+            if(credits.cast.length > 0){
+                if(credits.cast.length < 4){
+                    for (i = 0; i < credits.cast.length; i++){
+                        actorsArray.push(credits.cast[i].name);
+                    }
+                }else {
+                    for (i = 0; i < 4; i++){
+                        actorsArray.push(credits.cast[i].name);
+                    }
+                }
             }
             resolve(actorsArray);
         });

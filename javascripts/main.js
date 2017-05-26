@@ -112,7 +112,7 @@ $("#watched").click(function() {
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
     fb.getWatchedMovies()
     	.then(function(data){
-
+    		outputToDOM(data);
     	});
 });
 

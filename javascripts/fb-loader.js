@@ -25,8 +25,8 @@ let getUnwatchedMovies = () => {
         }).done(function(data){
             console.log("data back from FB before filter", data);
             for(let prop in data) {
-                if(data.prop.watched === true) {
-                    data.prop.pop();
+                if(data[prop].watched === true) {
+                    delete data[prop];
                 }
             }
             console.log("data back from FB after filter", data);
@@ -39,10 +39,16 @@ let getUnwatchedMovies = () => {
 let getWatchedMovies = () => {
     return new Promise((resolve, reject)=>{
         $.ajax({
-            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy=user&equalTo=${user.getUser()}`,
+            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy="user"&equalTo="${user.getUser()}"`,
             type: 'GET'
         }).done(function(data){
-            console.log(data);
+            console.log("data back from FB before filter", data);
+            for (let prop in data) {
+                if(data[prop].watched === false){
+                    delete data[prop];
+                }
+            }
+            console.log("data back from FB after filter", data);
             resolve(data);
         });
     });

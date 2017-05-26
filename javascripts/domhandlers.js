@@ -3,16 +3,19 @@
 let fb = require("./fb-loader"),
     user = require("./user");
 
-function cardDelete() {
+function cardDelete(id) {
     //user clicks the x and card is deleted
+    $('#'+id).remove();
+    let fbID = id;
     //movie is removed from users Firebase - call removeFromFB function
-    fb.removeFromFB();
+    fb.removeFromFB(fbID);
 }
 
 //user clicks "x" - run removeFromFB
-$(document).on('click', '.glyphicon', () => {
-    console.log("glyphicon has been clicked");
-    // fb.removeFromFB();
+$(document).on('click', '.glyphicon', (event) => {
+    //Spits back id of the div containing the glyphicon
+    console.log("glyphicon has been clicked", event.target.offsetParent.offsetParent.id);
+    cardDelete(event.target.offsetParent.offsetParent.id);
 });
 
 //user clicks on the stars - run starsClick
@@ -51,22 +54,23 @@ $(document).on("click", ".addToWatchlist", function(event){
     var poster = watchlistButton.querySelector(".poster").src;
     console.log('poster', poster);
     var userName = user.getUser();
+    var id = event.currentTarget.offsetParent.id;
     var addToWatchlistObj = {
         movie: title,
         cast: actors,
         year: date,
         poster: poster,
         stars: null,
-        boolean: false,
+        watched: false,
         fb: "fb",
+        id: id,
         user: userName
     };
     console.log(addToWatchlistObj);
 
     fb.addMovies(addToWatchlistObj);
 
-
-
-    // SOMEWHERE IN HERE IS WHERE FB.ADDMOVIES GETS CALLED
+// Remove element from DOM
+    $('#'+id).remove();
 
 });

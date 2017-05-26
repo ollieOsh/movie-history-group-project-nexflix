@@ -98,14 +98,11 @@ $("#unwatched").click(function() {
     $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
     fb.getUnwatchedMovies()
     	.then(function(data){
-        console.log("got ish", data);
-
     // A function that changes the object id value to the random ass Firebase object name
         let idArray = Object.keys(data);
         idArray.forEach(function(key){
           data[key].id = key;
         });
-    	console.log('song object with id', data);
     	outputToDOM(data);
     });
 });
@@ -116,7 +113,7 @@ $("#watched").click(function() {
     $("#breadcrumb").append(`<li class="search-results">Watched</li>`);
     fb.getWatchedMovies()
     	.then(function(data){
-
+    		outputToDOM(data);
     	});
 });
 
@@ -154,7 +151,7 @@ $(document).on('click', '#untracked', () => {
 
 // Press ENTER in Search Bar to search Untracked Movies
 $("#search").keypress(function(key){
-			console.log("pressed enter");
+console.log("pressed enter");
 	if(key.which == 13){
 		$("#breadcrumb").html(`<li class="search-results">Search Results</li>`);
 		let inputValue = $('#search').val();
@@ -211,6 +208,11 @@ let outputToDOM = (object) =>{
 	$("#outputArea").html(moviesTemplate(bigObj));
 };
 
+
+let filterUntracked = (apiObj) => {
+
+};
+
 //slider bullshit-- shit don't work right now //
 
 	let sliderText = $("#slider-text"),
@@ -247,5 +249,3 @@ let outputToDOM = (object) =>{
 // 		}else if(starSlider == 10){
 // 			return
 // 		} break;
-
-

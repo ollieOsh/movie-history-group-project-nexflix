@@ -97,14 +97,11 @@ $("#unwatched").click(function() {
     $("#breadcrumb").append(`<li class="search-results">Unwatched</li>`);
     fb.getUnwatchedMovies()
     	.then(function(data){
-        console.log("got ish", data);
-
     // A function that changes the object id value to the random ass Firebase object name
         let idArray = Object.keys(data);
         idArray.forEach(function(key){
           data[key].id = key;
         });
-    	console.log('song object with id', data);
     	outputToDOM(data);
     });
 });
@@ -149,7 +146,7 @@ $(document).on('click', '#untracked', () => {
 
 // Press ENTER in Search Bar to search Untracked Movies
 $("#search").keypress(function(key){
-			console.log("pressed enter");
+console.log("pressed enter");
 	if(key.which == 13){
 
 		let inputValue = $('#search').val();
@@ -202,4 +199,10 @@ let outputToDOM = (object) =>{
 	}
 	console.log("bigObj", bigObj);
 	$("#outputArea").html(moviesTemplate(bigObj));
+};
+
+
+
+let filterUntracked = (apiObj) => {
+
 };

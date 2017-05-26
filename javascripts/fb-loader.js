@@ -4,7 +4,6 @@ let firebase = require("./fb-config");
 let user = require("./user.js");
 //add to watchlist is clicked - add this data to user FB
 let addMovies = (movieObj) => {
-    console.log("movieObj", movieObj);
     return new Promise(function(resolve, reject) {
         $.ajax({
             url: `${firebase.getFBsettings().databaseURL}/movies.json`,
@@ -24,7 +23,13 @@ let getUnwatchedMovies = () => {
             type: 'GET'
 
         }).done(function(data){
-            console.log(data);
+            console.log("data back from FB before filter", data);
+            for(let prop in data) {
+                if(data.prop.watched === true) {
+                    data.prop.pop();
+                }
+            }
+            console.log("data back from FB after filter", data);
             resolve(data);
         });
     });
@@ -50,6 +55,18 @@ let removeFromFB = (id) => {
             type: 'DELETE'
         }).done(function(){
             resolve();
+        });
+    });
+};
+
+let getAllUserMovies = () => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${firebase.getFBsettings().databaseURL}/movies.json?orderBy=user&equalTo=${user.getUser()}`,
+            type: 'GET'
+        }).done(function(data){
+            console.log(data);
+            resolve(data);
         });
     });
 };
